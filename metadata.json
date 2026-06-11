@@ -1,0 +1,6 @@
+{
+  "name": "ReVa",
+  "description": "ReVa - Discover More. Shop Better. A premium multi-category e-commerce marketplace featuring luxury Electronics, elite Fashion, bespoke Accessories, Home & Living, Beauty & Personal Care, Sports & Fitness, Books & Education, Toys & Kids, Automotive, and Grocery & Essentials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
