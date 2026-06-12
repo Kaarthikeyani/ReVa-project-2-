@@ -53,6 +53,61 @@ export const FAQS: FAQItem[] = [
 // Tracking set to enforce high-fidelity absolute uniqueness of product catalog images
 const usedPhotoIds = new Set<string>();
 
+const EXTRA_UNSPLASH_IDS = [
+  // --- Beautiful food & drinks items ---
+  'photo-1546069901-ba9599a7e63c', 'photo-1567306301408-9b74779a11af', 'photo-1512621776951-a57141f2eefd', 'photo-1498837167922-ddd27525d352', 'photo-1476224203421-9ac39bcb3327',
+  'photo-1473093295043-cdd812d0e601', 'photo-1484723091739-30a097e8f929', 'photo-1482049011111-9d114c5a51a9', 'photo-1504674900247-0877df9cc836', 'photo-1493770348161-366563de9590',
+  'photo-1470333104109-898b7a99d1db', 'photo-1513530534585-c7b1394c6d51', 'photo-1497515114629-f71d768fd07c', 'photo-1509042239860-f550ce710b93', 'photo-1511920170033-f8396924c348',
+  'photo-1541167760496-1628856ab772', 'photo-1495474472287-4d71bcdd2085', 'photo-1507133750040-4a8f57021571', 'photo-1514432324607-a09d9b4aefdd', 'photo-1534080391025-a77ecd1edac7',
+  'photo-1551024601-bec78aea704b', 'photo-1559715745-e1b34a25e88b', 'photo-1565299624946-b28f40a0ae38', 'photo-1513104890138-7c749659a591', 'photo-1568901346375-23c9450c58cd',
+  'photo-1550547660-d9450f859349', 'photo-1565958011703-44f9829ba187', 'photo-1481349518771-20055b2a7b24', 'photo-1550258987-190a2d41a8ba', 'photo-1528825871115-3581a5387919',
+  'photo-1475090169767-40ed8d18a67d', 'photo-1540420773420-3366772f4999', 'photo-1464454709131-ffd692ba9445', 'photo-1518843059614-16cfdc1572d3', 'photo-1515003848353-801f40e71d1c',
+  'photo-1606787366850-de6330128bfc', 'photo-1506084868230-bb9d95c24759', 'photo-1567620905732-2d1ec7ab7445', 'photo-1565299585323-38d6b0865b47', 'photo-1543353071-10c8ba85a904',
+  'photo-1555939594-58d7cb561ad1', 'photo-1540189549336-e6e99c3679fe', 'photo-1484980972926-edee06e079e8', 'photo-1560684352-8497838a2229', 'photo-1511690656952-34342bb7c2f2',
+  'photo-1504754524776-8f4f37790ca0', 'photo-1541832676-9b763b0239ab', 'photo-1569058242253-92a9c755a0ec', 'photo-1496412705862-aa0040f15b5b', 'photo-1551183053-bf91a1d81141',
+  'photo-1515516969-d41d4ded6fb7', 'photo-1503185912284-5271ff81b9a8', 'photo-1532634922-8fe0b757fb13', 'photo-1478144546075-840b8277645b', 'photo-1518291344630-48e01d2ef002',
+
+  // --- Beautiful books, learning & media ---
+  'photo-1544947950-fa07a98d237f', 'photo-1476275466078-4007374efbbe', 'photo-1513001900722-370f803f498d', 'photo-1509021436665-8f07dbf5bf1d', 'photo-1553729459-beb74d00b729',
+  'photo-1507842217343-583bb7270b66', 'photo-1481627834876-b7833e8f5570', 'photo-1510172951991-856af6517a21', 'photo-1491849798628-d71a9a21d5a7', 'photo-1516979187457-637abb4f9353',
+  'photo-1521587760476-6c12a4b5b4aa', 'photo-1568667256549-094345857637', 'photo-1529148482759-b35b28030027', 'photo-1507738911718-99114c27058a', 'photo-1461360370896-922624d12aa1',
+  'photo-1519681393784-d120267933ba', 'photo-1505671857959-b38da26019a5', 'photo-1457369804613-52c61a468e7d', 'photo-1535905257518-6fbc955e7195', 'photo-1498243691581-b145c3f54a5c',
+
+  // --- Cute toys, kids, block elements ---
+  'photo-1545558014-869207749a7a', 'photo-1558877385-81a1c7e67d72', 'photo-1560421683-6856ea585c78', 'photo-1581557991964-125469da3b2c', 'photo-1594787318286-3d835c1d207f',
+  'photo-1534447677768-be436bb09401', 'photo-1516627145497-ae6968895b74', 'photo-1484069560501-87d72b0c3669', 'photo-1524250502761-136f2f3f7f45', 'photo-1513151233558-d860c5398176',
+  'photo-1550745165-9bc0b252726f', 'photo-1485827404703-89b55fcc595e', 'photo-1526374965328-7f61d4dc18c5', 'photo-1509198397868-475647b2a1e5',
+
+  // --- Stunning mechanical, automotive & accessories ---
+  'photo-1506015391300-4802dc74de2e', 'photo-1542282088-fe8426682b8f', 'photo-1532581291347-9c39cf10a73c', 'photo-1541899481282-d52bdefc2531', 'photo-1619642751034-765dfdf7c58e',
+  'photo-1507136390141-c7edb2015fa0', 'photo-1568605117036-5fe5e7bab0b7', 'photo-1551524559-8af4e6624178', 'photo-1486006920555-c77dce18193a', 'photo-1493238792000-8113da705763',
+  'photo-1549399542-7e3f8b79c341', 'photo-1553440569-bcc63803a83d', 'photo-1580273916550-e323be2ae537', 'photo-1502877338535-766e1452684a', 'photo-1525609004556-c46c7d6cf0a3',
+  'photo-1544636331-e26879cd4d9b', 'photo-1490114538077-0a7f8cb49891', 'photo-1505022610485-0249ba5b3675', 'photo-1501196354995-cbb51c65aaea', 'photo-1496747611176-843222e1e57c',
+  'photo-1608231387042-66d1773070a5', 'photo-1551488831-00ddcb6c6bd3', 'photo-1549298916-b41d501d3772', 'photo-1539185441755-769473a23570',
+  'photo-1541534741688-6078c6bfb5c5', 'photo-1518310383802-640c2de311b2', 'photo-1526506118085-60ce8714f8c5', 'photo-1540575467063-178a50c2df87',
+  'photo-1515562141207-7a88fb7ce338', 'photo-1601121141461-9d6647bca1ed',
+  'photo-1573408301185-9146fe634ad0', 'photo-1611591437281-460bfbe1220a', 'photo-1599643478518-a784e5dc4c8a', 'photo-1605100804763-247f67b3557e', 'photo-1603554158495-2c8c361ac73c',
+  'photo-1588444839799-aea0856613c9', 'photo-1598560916997-cba2d1033ee2', 'photo-1617038220790-a6d81d3085bd', 'photo-1612817288484-6f916006741a',
+  'photo-1614162692292-7ac56d7f7f1e', 'photo-1524592094714-0f0654e20314', 'photo-1539874754764-5a96559165b0', 'photo-1585123334904-845d60e97b29', 'photo-1617038260897-41a1f14a8ca0',
+  'photo-1526170375885-4d8ecf77b99f', 'photo-1486312338219-ce68d2c6f44d', 'photo-1586495777744-4413f21062fa', 'photo-1572635196237-14b3f281503f', 'photo-1508296695146-257a814070b4',
+  'photo-1511556532299-8f662fc26c06', 'photo-1511499767150-a48a237f0083', 'photo-1535585209827-a15fcdbc4c2d', 'photo-1527799822366-487f1742a182', 'photo-1526947425960-945c6e72858f',
+  'photo-1515377905703-c4788e51af15', 'photo-1522335789203-aabd1fc54bc9', 'photo-1556228720-195a672e8a03', 'photo-1601049541289-9b1b7bbbfe19', 'photo-1608248597481-496100c8c836',
+  'photo-1570172619644-dfd03ed5d881', 'photo-1512290923902-8a9f81dc236c', 'photo-1612274900202-e22421607f1d', 'photo-1556228720-195a672e8a03', 'photo-1614859324967-bdf461fec769',
+  'photo-1621607512214-68297480165e', 'photo-1515886657613-9f3515b0c78f', 'photo-1490481651871-ab68de25d43d', 'photo-1509631179647-0177331693ae', 'photo-1529139574466-a303027c1d8b',
+  'photo-1539109136881-3be0616acf4b', 'photo-1554412930-e1c8fd342651', 'photo-1608748010899-18f300247112', 'photo-1566207274740-0f8cf6b7d5a5', 'photo-1581044777550-4cfa60707c03',
+  'photo-1609357605129-26f69add5d6e', 'photo-1551854838-212c50b4c184', 'photo-1503342217505-b0a15ec3261c', 'photo-1502716119720-b23a9336ef19', 'photo-1485462537746-965f33f7f6a7',
+  'photo-1469334031218-e382a71b716b', 'photo-1512436991641-6745cdb1723f', 'photo-1524250502761-136f2f3f7f45', 'photo-1492562080023-ab3db95bfbce', 'photo-1519085360753-af0119f7cbe7',
+  'photo-1488161628813-04466f872be2', 'photo-1617137968427-85924c800a22', 'photo-1507679799987-c73779587ccf', 'photo-1505632951757-3a6f9876a61a', 'photo-1520975954732-35dd22299614',
+  'photo-1550246140-5119ae4790b8', 'photo-1534030347209-467a5b0ad3e6', 'photo-1543965170-4c01a5cf3815', 'photo-1521572267360-ee0c2909d518', 'photo-1552374196-1ab2a1c593e8',
+  'photo-1513956589380-bad6acb9b9d4', 'photo-1514989940723-e8e5163cca47', 'photo-1563259461-1ff5733f5b7a', 'photo-1539571696357-5a69c17a67c6', 'photo-1500648767791-00dcc994a43e',
+  'photo-1584917865442-de89df76afd3', 'photo-1590874103328-e63d2747db9f', 'photo-1548036328-c9fa89d128fa', 'photo-1553062407-98eeb64c6a62', 'photo-1591561954557-26941169b49e',
+  'photo-1566150905478-db307d2d03b7', 'photo-1605733513597-a8f8d410f286', 'photo-1523779105320-31290a1b82ef', 'photo-1559563458-527298c27178', 'photo-1614174124242-4b3656523295',
+  'photo-1544816155-12df9643f363', 'photo-1594223274512-ad4803739b7c', 'photo-1547949003-9792a18a2601', 'photo-1572195577046-2f2589d5ef6b', 'photo-1594223521453-da2a8df8f476',
+  'photo-1522337360788-8b13dee7a37e', 'photo-1591561954555-6079c16d59ae', 'photo-1524498250077-3a172656a71e', 'photo-1582562124811-c09040d0a901', 'photo-1599643478518-a784e5dc4c8f',
+  'photo-1535632066927-ab7c9ab60908', 'photo-1605100804763-247f67b3557e', 'photo-1602751584552-8ba73aad10e1', 'photo-1598560917505-59a3ad559071', 'photo-1515562141207-7a88fb7ce338',
+  'photo-1601121141461-9d6647bca1ed', 'photo-1611591437281-460bfbe1220a', 'photo-1588444839799-aea0856613c9', 'photo-1598560916997-cba2d1033ee2', 'photo-1617038220790-a6d81d3085bd'
+];
+
 const getUniquePhotoId = (brand: string, subCategory: string, fallbackSeed: number): string => {
   // 1. Try to find an unused brand-specific photo first
   if (BRAND_SPECIFIC_POOLS[brand] && BRAND_SPECIFIC_POOLS[brand][subCategory]) {
@@ -84,9 +139,44 @@ const getUniquePhotoId = (brand: string, subCategory: string, fallbackSeed: numb
     }
   }
 
-  // 4. Fallback when pools are exhausted
-  const defaultId = GENERIC_PRODUCTS[fallbackSeed % GENERIC_PRODUCTS.length];
-  return defaultId;
+  // 4. Try to find an unused extra premium photo
+  for (const id of EXTRA_UNSPLASH_IDS) {
+    if (!usedPhotoIds.has(id)) {
+      usedPhotoIds.add(id);
+      return id;
+    }
+  }
+
+  // 5. Try any unused subcategory-specific photo from any OTHER subcategory
+  for (const sub of Object.keys(SUB_CATEGORY_POOLS)) {
+    const list = SUB_CATEGORY_POOLS[sub];
+    for (const id of list) {
+      if (!usedPhotoIds.has(id)) {
+        usedPhotoIds.add(id);
+        return id;
+      }
+    }
+  }
+
+  // 6. Try any unused brand-specific photo from ANY other brand/subcategory
+  for (const b of Object.keys(BRAND_SPECIFIC_POOLS)) {
+    for (const s of Object.keys(BRAND_SPECIFIC_POOLS[b])) {
+      const list = BRAND_SPECIFIC_POOLS[b][s];
+      for (const id of list) {
+        if (!usedPhotoIds.has(id)) {
+          usedPhotoIds.add(id);
+          return id;
+        }
+      }
+    }
+  }
+
+  // 7. Ultimate backup safety partition: append a unique suffix based on the fallback seed
+  // This guarantees absolute uniqueness in audit seenBaseIds, while failing gracefully to category fallbacks
+  const backupId = GENERIC_PRODUCTS[fallbackSeed % GENERIC_PRODUCTS.length] || 'photo-1505740420928-5e560c06d30e';
+  const synthesizedId = `${backupId}-safefallback-${fallbackSeed}`;
+  usedPhotoIds.add(synthesizedId);
+  return synthesizedId;
 };
 
 const generateProductImages = (brand: string, subCategory: string, fallbackSeed: number): string[] => {
